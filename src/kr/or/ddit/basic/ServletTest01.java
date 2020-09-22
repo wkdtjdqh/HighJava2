@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 // - localhost ==> 컴퓨터이름(도메인명) 또는 IP주소
 // -  80 ==> Port번호 (80번은 생략가능)
 // - /servletTest ==> 컨테스트 패스(보통 '웹 프로젝트 이름'으로 자동 지정된다.)
-// - /servle.Test01.do ==> 서블릿 요청 URL패턴
+// - /servletTest01.do ==> 서블릿 요청 URL패턴
 
 // Servlet클래스는 HttpServlet을 상속해서 작성한다.
 public class ServletTest01 extends HttpServlet{

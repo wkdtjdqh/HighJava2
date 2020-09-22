@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns={"/servletTest02.do"}, description="어노테이션을 이용한 서블릿 예제")
 //@WebServlet("/servletTest02.do")
 public class ServletTest02 extends HttpServlet{
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
