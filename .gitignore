@@ -1,0 +1,14 @@
+.classpath
+.project
+.settings/.jsdtscope
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+build/classes/kr/or/ddit/basic/RequestTest01.class
+build/classes/kr/or/ddit/basic/ServletTest01.class
+build/classes/kr/or/ddit/basic/ServletTest02.class
+build/classes/kr/or/ddit/basic/ServletTest03.class
+build/classes/kr/or/ddit/basic/ServletTest04.class

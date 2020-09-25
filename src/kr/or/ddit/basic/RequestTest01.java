@@ -3,6 +3,8 @@ package kr.or.ddit.basic;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,20 +59,52 @@ public class RequestTest01 extends HttpServlet {
 		out.println("2. 요청 메서드 : " + request.getMethod() + "<br>");
 		out.println("3. ContextPath : " + request.getContextPath() + "<br>");
 		out.println("4. 프로토콜 : " + request.getProtocol() + "<br>");
+		out.println("5. 요청 URL : " + request.getRequestURL() + "<br>");
+		out.println("6. 요청 URI : " + request.getRequestURI() + "<br>"); // ContextPath부터 나온다.
 		out.println("</td></tr></table>");
 		
-		out.println("<hr><h2>getParameterName() 메서드 결과 값들...</h2>");
 		// getParameterNames()메서드 ==> 파라미터명들만 반환한다.
-		// 		반환되는 값들은 Enumeration객체형으로 반환한다.
+		// 		반환되는 값들은 Enumeration객체형으로 반환한다. Enumeration은 이터레이터와 비슷하다.
+		out.println("<hr><h2>getParameterName() 메서드 결과 값들...</h2>");
 		Enumeration<String> params = request.getParameterNames();
 		out.println("<ul>");
-		while(params.hasMoreElements()){
-			String paraName = params.nextElement();
+		while(params.hasMoreElements()){	// 다음 데이터가 있는지 확인(있으면 true, 없으면 false)
+			String paraName = params.nextElement();	// 포인터를 다음으로 이동하고 그 자리의 데이터를 반환한다.
 			out.println("<li>" + paraName + "</li>");
 		}
 		out.println("</ul>");
 		
+		// getParameterMap()메서드 ==> 전송된 모든 파라미터를 Map객체에 담아서 반환한다.
+		//			이 Map객체의 key값은 '파라미터명'이며 자료형은 String형이고, value값은 해당 파라미터의 '값'이며 자료형은 String[]형 이다.
+		out.println("<h2>getParameterMap() 메서드 처리 결과</h2>");
+		out.println("<table border=1>");
+		out.println("<tr><td>파라미터 Name</td><td>파라미터 value</td></tr>");
 		
+		Map<String, String[]> paramMap = request.getParameterMap();
+		
+		// Map의 key값들을 Iterator로 가져온다.
+		Iterator<String> it = paramMap.keySet().iterator();
+		
+		while(it.hasNext()){
+			String paramName = it.next();	// key값 즉, 파라미터명을 구한다.
+			out.println("<tr><td>" + paramName + "</td><td>");
+			
+			String[] paramValues = paramMap.get(paramName);	// Map의 value값 즉, 파라미터 값을 구한다.
+			
+			if(paramValues == null || paramValues.length == 0){	// 파라미터가 없는 경우
+				
+			} else if(paramValues.length == 1){	// 파라미터가 배열이 아닌 경우 (즉, 파라미터명이 1개인 경우)
+				out.println(paramValues[0]);
+			} else {	// 파라미터가 배열인 경우(즉, 파라미터명이 2개 이상인 경우)
+				for(int i=0; i<paramValues.length; i++){
+					if(i>0) out.println(", ");	// 값과 값 사이에 쉼표 넣기
+					out.println(paramValues[i]);
+				}
+			}
+			out.println("</td></tr>");
+		}
+		
+		out.println("</table>");
 		out.println("</body></html>");
 	}
 
