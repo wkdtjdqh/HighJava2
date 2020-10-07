@@ -21,4 +21,24 @@
     <param-name>FileName</param-name>
     <param-value>d:/d_other/test.txt</param-value>
   </context-param>
+  <filter>
+    <filter-name>requestWrapperFilter</filter-name>
+    <filter-class>kr.or.ddit.basic.wrapper.RequestWrapperFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>requestWrapperFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>CustomEncodingFilter</filter-name>
+    <filter-class>kr.or.ddit.basic.filter.CustomEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CustomEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
